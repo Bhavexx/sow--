@@ -1,0 +1,174 @@
+/* ---------- General Page ---------- */
+.terms-page {
+  position: relative;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* ---------- Background Image ---------- */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  z-index: -1;
+  filter: brightness(0.95);
+}
+
+/* ---------- Navbar ---------- */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 80px;
+  background: transparent; /* Fully transparent */
+  backdrop-filter: none; /* Remove blur effect for full transparency */
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.top-nav.scrolled {
+  background: transparent; /* Keep transparent even when scrolling */
+  backdrop-filter: none;
+}
+
+.top-nav .nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 38px;
+}
+
+.top-nav .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.top-nav a:hover {
+  color: #00aaff;
+}
+
+/* ---------- Language Dropdown ---------- */
+.language-select {
+  margin-left: 15px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 13px;
+}
+
+/* ---------- Terms Header ---------- */
+.terms-header {
+  text-align: center;
+  margin-top: 80px;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.terms-header h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+/* ---------- Terms Container ---------- */
+.terms-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 120px 20px 60px;
+}
+
+.terms-box {
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 12px;
+  max-width: 800px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  line-height: 1.6;
+  text-align: left;
+  overflow-y: auto;
+}
+
+.terms-box p {
+  font-size: 14px;
+  color: #333;
+  white-space: pre-line;
+}
+
+/* ---------- Button ---------- */
+.back-button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 10px 30px;
+  background: #00c851;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background: #009e3c;
+}
+
+/* ---------- Scrollbar (optional styling) ---------- */
+.terms-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terms-box::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 10px;
+}
+
+.terms-box::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .top-nav {
+    padding: 10px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    background: transparent; /* Keep transparent on mobile */
+    backdrop-filter: none;
+  }
+
+  .top-nav a {
+    font-size: 13px;
+    margin: 8px 0;
+  }
+
+  .terms-box {
+    padding: 25px;
+  }
+
+  .terms-header h1 {
+    font-size: 28px;
+  }
+}
