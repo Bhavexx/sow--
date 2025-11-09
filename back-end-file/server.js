@@ -20,6 +20,25 @@ app.use(express.json());
 // Serve static files from the React app build directory
 app.use(express.static(path.join(__dirname, '..', 'front-end-file', 'dist')));
 
+// Add a database health check endpoint
+app.get('/api/health/database', async (req, res) => {
+  try {
+    const db = require('./config/db');
+    const result = await db.query('SELECT NOW()');
+    res.status(200).json({ 
+      status: 'OK', 
+      message: 'Database connection successful',
+      timestamp: result.rows[0].now
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      status: 'ERROR', 
+      message: 'Database connection failed',
+      error: error.message
+    });
+  }
+});
+
 // API routes
 // User routes
 app.use('/api/users', require('./routes/users'));
@@ -46,5 +65,11 @@ app.listen(PORT, () => {
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {
   console.log('Unhandled Rejection:', err.message);
+  process.exit(1);
+});
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (err) => {
+  console.log('Uncaught Exception:', err.message);
   process.exit(1);
 });
