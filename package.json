@@ -1,0 +1,19 @@
+{
+  "name": "full-stack-app",
+  "version": "1.0.0",
+  "description": "Full stack application with React frontend and Node.js backend",
+  "main": "back-end-file/server.js",
+  "scripts": {
+    "build": "cd front-end-file && npm run build",
+    "start": "node back-end-file/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd back-end-file && npm start",
+    "client": "cd front-end-file && npm run dev"
+  },
+  "dependencies": {
+    "concurrently": "^8.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

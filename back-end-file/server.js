@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 
 // Load environment variables
 dotenv.config();
@@ -16,16 +17,21 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Basic route
-app.get('/', (req, res) => {
-  res.json({ message: 'Backend server is running!' });
-});
+// Serve static files from the React app build directory
+app.use(express.static(path.join(__dirname, '..', 'front-end-file', 'dist')));
 
+// API routes
 // User routes
 app.use('/api/users', require('./routes/users'));
 
 // Purchase routes
 app.use('/api/purchases', require('./routes/purchases'));
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'front-end-file', 'dist', 'index.html'));
+});
 
 // Start server
 app.listen(PORT, () => {
