@@ -7,8 +7,11 @@ dotenv.config({ path: '../.env' });
 // Create a PostgreSQL connection pool with better error handling
 let pool;
 
-// Only create pool if we have database credentials
-if (process.env.DB_USER && process.env.DB_HOST && process.env.DB_NAME) {
+// Only create pool if we have ALL required database credentials
+if (process.env.DB_USER && process.env.DB_HOST && process.env.DB_NAME && 
+    process.env.DB_USER.trim() !== '' && process.env.DB_HOST.trim() !== '' && process.env.DB_NAME.trim() !== '') {
+  console.log('Database credentials found. Attempting to connect...');
+  
   pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
@@ -31,10 +34,10 @@ if (process.env.DB_USER && process.env.DB_HOST && process.env.DB_NAME) {
     }
   });
 } else {
-  console.log('Database credentials not provided. Database functionality will be disabled.');
+  console.log('No database credentials provided or incomplete credentials. Database functionality will be disabled.');
   pool = {
     query: (text, params) => {
-      return Promise.reject(new Error('Database not configured'));
+      return Promise.reject(new Error('Database not configured or credentials missing'));
     }
   };
 }
