@@ -4,7 +4,7 @@
   "description": "Full stack application with React frontend and Node.js backend",
   "main": "back-end-file/server.js",
   "scripts": {
-    "build": "cd front-end-file && npm run build",
+    "build": "cd front-end-file && npm install && npm run build",
     "start": "node back-end-file/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd back-end-file && npm start",
